@@ -13,6 +13,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import dataDummy from "../data/data";
 import { useState } from "react";
+import {useNavigate} from "react-router-dom"
 
 function Login(props) {
   return (
@@ -29,7 +30,6 @@ function Login(props) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
 
@@ -39,6 +39,9 @@ export default function SignIn() {
     password: "",
   });
 
+  //making a use state to indicate whether the user is successfully login 
+  const [valid ,setValid]=useState()
+  const navigate= useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -46,12 +49,15 @@ export default function SignIn() {
       email: data.get("email"),
       password: data.get("password"),
     });
+    
     dataDummy.map((res) => {
       if (res.email === user.email && res.password === user.password) {
-        console.log("sukses")
+        navigate("/")
+        setValid(true)
         return "login berhasil";
       } else {
-        console.log("gagal")
+        navigate("/login")
+        setValid(false)
         return "login gagal";
       }
     });
@@ -113,6 +119,7 @@ export default function SignIn() {
             >
               Login
             </Button>
+            {valid? <h1>HAHAHA BERHASIL</h1>:<h1>I love You Gaby</h1>}
             <Grid container>
               <Grid item>
                 <Link to="signup" variant="body2">

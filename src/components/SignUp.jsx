@@ -11,6 +11,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
 import dataDummy from "../data/data";
+import { useNavigate } from "react-router-dom";
 
 function SignIn(props) {
   return (
@@ -38,6 +39,8 @@ export default function SignUp() {
     password: "",
   });
 
+  const navigate= useNavigate()
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -47,9 +50,8 @@ export default function SignUp() {
     });
     if (biodata.email.length !== 0 && biodata.password.length !== 0) {
       dataDummy.push({ biodata });
-      console.log("berhasil daftar");
+      navigate("/");
     }
-    console.log(dataDummy);
   };
 
   return (
