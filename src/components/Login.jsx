@@ -119,7 +119,6 @@ export default function SignIn() {
             >
               Login
             </Button>
-            {valid? <h1>HAHAHA BERHASIL</h1>:<h1>I love You Gaby</h1>}
             <Grid container>
               <Grid item>
                 <Link to="signup" variant="body2">
