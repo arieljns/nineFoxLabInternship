@@ -14,6 +14,7 @@ import {
   signOut,
 } from "firebase/auth";
 import { getFirestore, getDoc, setDoc, doc } from "firebase/firestore";
+import { UserProvider } from "./context/context";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDiaAkr2SINU4z1gLdMjMkkomS7C-v9WAo",
@@ -83,7 +84,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <UserProvider>
+        <App />
+      </UserProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

@@ -25,6 +25,22 @@
     display: flex;
     align-items: center;
     gap: 50px;
+  }
+
+  header .google .casual{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    border-radius: 7px;
+    box-shadow: 0 2px 2px #0e0c0c;
+    padding: 5px;
+    border-style: none;
+  }
+
+  header .google .responsive{
+    display: none
     
   }
  
@@ -134,9 +150,20 @@
       header .login{
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 15px;
         
       }
+
+      header .google .casual{
+        display: none
+        
+      }
+      header .google .responsive{
+      display: flex;
+        
+      }
+     
+
       body {
         background: #eee;
         background-image: url("https://www.transparenttextures.com/patterns/cubes.png");

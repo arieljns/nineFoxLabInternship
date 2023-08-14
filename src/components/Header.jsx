@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import EditNoteIcon from "@mui/icons-material/EditNote";
-
+import LoginUser from "./SignInGoogle";
 function Header() {
   const linkStyle = {
     textDecoration: "none",
@@ -22,6 +22,7 @@ function Header() {
         <Link to="/signup" style={linkStyle}>
           Sign Up
         </Link>
+        <LoginUser />
       </div>
     </header>
   );
