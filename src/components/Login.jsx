@@ -13,7 +13,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import dataDummy from "../data/data";
 import { useState } from "react";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 function Login(props) {
   return (
@@ -30,7 +30,6 @@ function Login(props) {
   );
 }
 
-
 const defaultTheme = createTheme();
 
 export default function SignIn() {
@@ -39,9 +38,9 @@ export default function SignIn() {
     password: "",
   });
 
-  //making a use state to indicate whether the user is successfully login 
-  const [valid ,setValid]=useState()
-  const navigate= useNavigate();
+  //making a use state to indicate whether the user is successfully login
+  const [invalid, setinValid] = useState(false);
+  const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -49,18 +48,22 @@ export default function SignIn() {
       email: data.get("email"),
       password: data.get("password"),
     });
-    
+
     dataDummy.map((res) => {
       if (res.email === user.email && res.password === user.password) {
-        navigate("/")
-        setValid(true)
+        navigate("/");
+        setinValid(false);
         return "login berhasil";
       } else {
-        navigate("/login")
-        setValid(false)
+        navigate("/login");
+        setinValid(true);
         return "login gagal";
       }
     });
+  };
+
+  const logOut = () => {
+    console.log("keluar");
   };
 
   return (
@@ -75,11 +78,9 @@ export default function SignIn() {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            
-          </Avatar>
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar>
           <Typography component="h1" variant="h5">
-            Log in 
+            Log in
           </Typography>
           <Box
             component="form"
@@ -111,6 +112,12 @@ export default function SignIn() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
+
+            {invalid ? (
+              <h4 style={{color: "red"}}>Email and Password is wrong</h4>
+            ) : (
+              ""
+            )}
             <Button
               type="submit"
               fullWidth
